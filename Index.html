@@ -1,11 +1,8 @@
-Index.html  
-```
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مشروع صقر | SAQR - كشف الأصوات المزيفة</title>
-    <!-- استيراد خط عربي جميل من جوجل -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -32,8 +29,6 @@ Index.html
             display: flex;
             flex-direction: column;
         }
-
-        /* شريط التنقل */
         header {
             display: flex;
             justify-content: space-between;
@@ -76,8 +71,6 @@ Index.html
         nav ul li a:hover {
             color: var(--accent-color);
         }
-
-        /* المحتوى الرئيسي */
         main {
             flex: 1;
             display: flex;
@@ -105,8 +98,6 @@ Index.html
             margin-bottom: 40px;
             line-height: 1.6;
         }
-
-        /* صندوق الرفع */
         .upload-container {
             background-color: var(--card-bg);
             border: 2px dashed var(--border-color);
@@ -153,7 +144,6 @@ Index.html
             background-color: var(--accent-hover);
         }
 
-        /* زر الفحص والتنفيذ */
         .analyze-btn {
             margin-top: 25px;
             background-color: #10b981;
@@ -165,14 +155,14 @@ Index.html
             cursor: pointer;
             font-size: 1.1rem;
             transition: background 0.3s;
-            display: none; /* يظهر لما يتم اختيار ملف */
+            display: none;
         }
 
         .analyze-btn:hover {
             background-color: #059669;
         }
 
-        /* قسم النتائج (افتراضياً مخفي) */
+        
         .results-section {
             display: none;
             margin-top: 40px;
@@ -199,7 +189,7 @@ Index.html
             border-radius: 6px;
         }
 
-        /* التذييل */
+
         footer {
             text-align: center;
             padding: 20px;
@@ -211,7 +201,6 @@ Index.html
 </head>
 <body>
 
-    <!-- شريط التنقل -->
     <header>
         <div class="logo">🦅 مشروع <span>صقر (SAQR)</span></div>
         <nav>
@@ -223,12 +212,11 @@ Index.html
         </nav>
     </header>
 
-    <!-- المحتوى -->
     <main>
         <h1 class="hero-title">نظام كشف الأصوات المزيفة <span>بالذكاء الاصطناعي</span></h1>
         <p class="hero-subtitle">ارفع ملفاً صوتياً لتحليله عبر تحليل المخططات الطيفية (Spectrograms) والتأكد من دقته وأصالته.</p>
 
-        <!-- صندوق رفع الصوت -->
+
         <div class="upload-container" id="dropArea">
             <div class="upload-icon">🎵</div>
             <p class="upload-text" id="fileNameDisplay">اسحب وأفرغ ملف الصوت هنا، أو اضغط لاختيار ملف</p>
@@ -237,8 +225,6 @@ Index.html
             <br>
             <button class="analyze-btn" id="analyzeBtn" onclick="showResults()">بدء التحليل الفوري</button>
         </div>
-
-        <!-- نتائج التحليل -->
         <div class="results-section" id="resultsSection">
             <h3>📊 تقرير نتائج التحليل</h3>
             <div class="result-item">
@@ -256,12 +242,10 @@ Index.html
         </div>
     </main>
 
-    <!-- التذييل -->
     <footer>
         <p>جميع الحقوق محفوظة &copy; 2026 - مشروع تخرج صقر (SAQR)</p>
     </footer>
 
-    <!-- سكريبت بسيط لتفاعل الزر وتغيير النص عند اختيار ملف -->
     <script>
         const fileInput = document.getElementById('audioFile');
         const fileNameDisplay = document.getElementById('fileNameDisplay');
@@ -272,12 +256,11 @@ Index.html
             if (fileInput.files.length > 0) {
                 fileNameDisplay.textContent = "الملف المختار: " + fileInput.files[0].name;
                 analyzeBtn.style.display = "inline-block";
-                resultsSection.style.display = "none"; // إخفاء النتائج السابقة لو غيرت الملف
+                resultsSection.style.display = "none"; 
             }
         });
 
         function showResults() {
-            // محاكاة لعملية التحليل (لاحقاً بتربطونها بالـ Python والـ Backend)
             analyzeBtn.textContent = "جاري التحليل...";
             setTimeout(() => {
                 analyzeBtn.textContent = "بدء التحليل الفوري";
@@ -288,4 +271,3 @@ Index.html
 
 </body>
 </html>
-```
