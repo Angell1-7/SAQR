@@ -482,4 +482,110 @@
             const label = result.verdict_ar || v.text;
             const percent = Number(result.fake_probability).toFixed(1);
 
-            errorBox.style.display = "none
+                       errorBox.style.display = "none";
+            successContent.style.display = "block";
+            verdictBox.className = "verdict-box box-" + v.cls;
+            verdictLabel.className = "verdict-label verdict-" + v.cls;
+            verdictLabel.textContent = label;
+            verdictPercent.textContent = "احتمال التزييف: " + percent + "%";
+            verdictNote.textContent = v.note;
+            verdictNote.style.display = v.note ? "block" : "none";
+            durationValue.textContent = (result.duration_sec != null) ? Number(result.duration_sec).toFixed(1) + " ثانية" : "-";
+            modelVersionValue.textContent = result.model_version || "-";
+            if (result.warning) {
+                warningBox.textContent = "⚠️ " + result.warning;
+                warningBox.style.display = "block";
+            } else {
+                warningBox.textContent = "";
+                warningBox.style.display = "none";
+            }
+            resultsSection.style.display = "block";
+        }
+        function handleResult(result) {
+            if (result && result.status === "success") {
+                showSuccess(result);
+            } else if (result && result.message_ar) {
+                showError(result.message_ar);
+            } else {
+                showError(SERVER_DOWN_MSG);
+            }
+        }
+        function setFile(file) {
+            if (!file) return;
+            const dt = new DataTransfer();
+            dt.items.add(file);
+            fileInput.files = dt.files;
+            fileInput.dispatchEvent(new Event('change'));
+        }
+        // السحب والإفلات على مربع الرفع
+        const uploadContainer = document.querySelector('.upload-container');
+        ['dragover', 'dragenter'].forEach(ev => uploadContainer.addEventListener(ev, e => {
+            e.preventDefault();
+            uploadContainer.style.borderColor = "var(--accent-color)";
+        }));
+        ['dragleave', 'drop'].forEach(ev => uploadContainer.addEventListener(ev, e => {
+            e.preventDefault();
+            uploadContainer.style.borderColor = "";
+        }));
+        uploadContainer.addEventListener('drop', e => {
+            if (e.dataTransfer && e.dataTransfer.files.length > 0) setFile(e.dataTransfer.files[0]);
+        });
+        async function analyzeAudio() {
+            const file = fileInput.files[0];
+            if (!file) {
+                showError("اختر ملفًا صوتيًا أولًا");
+                return;
+            }
+            let name = file.name || "voice.m4a";
+            let ext = name.includes(".") ? name.split(".").pop().toLowerCase() : "";
+            if (!ext) { name = name + ".m4a"; ext = "m4a"; }
+            if (!ALLOWED_EXT.includes(ext)) {
+                showError("صيغة الملف غير مدعومة");
+                return;
+            }
+            if (file.size > MAX_SIZE) {
+                showError("حجم الملف أكبر من 25 ميجابايت");
+                return;
+            }
+            resultsSection.style.display = "none";
+            loadingBox.style.display = "block";
+            analyzeBtn.disabled = true;
+            if (USE_MOCK) {
+                setTimeout(() => {
+                    loadingBox.style.display = "none";
+                    analyzeBtn.disabled = false;
+                    handleResult(MOCK_RESPONSES[mockIndex++ % MOCK_RESPONSES.length]);
+                }, 1200);
+                return;
+            }
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+            try {
+                const form = new FormData();
+                form.append("file", file, name);
+                const res = await fetch(API_URL + "/analyze", {
+                    method: "POST",
+                    body: form,
+                    signal: controller.signal
+                });
+                let result = null;
+                try {
+                    result = await res.json();
+                } catch (e) {
+                    result = null;
+                }
+                handleResult(result);
+            } catch (err) {
+                // لا يوجد اتصال بالسيرفر أو انتهت المهلة
+                showError(SERVER_DOWN_MSG);
+            } finally {
+                clearTimeout(timer);
+                loadingBox.style.display = "none";
+                analyzeBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
+
+
