@@ -61,16 +61,12 @@
             color: var(--accent-color);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .logo-img {
-            height: 40px;
-            width: auto;
-        }
-
-        .logo span {
-            color: var(--text-main);
+            height: 70px; /* تكبير حجم الشعار */
+            width: auto;  /* الحفاظ على أبعاد الشعار */
         }
 
         nav ul {
@@ -354,7 +350,6 @@
     <header>
         <div class="logo">
             <img src="logo.png" alt="شعار صقر" class="logo-img">
-            صقر <span>(SAQR)</span>
         </div>
         <nav>
             <ul>
@@ -421,8 +416,7 @@
     <script>
         // ضعي هنا عنوان السيرفر الكامل بعد النشر (بدون / في النهاية)
         // مثال: "https://saqr-api.example.com"
-        const API_URL = "https://mba-flag-mothers-icon.trycloudflare.com";
-
+        const API_URL = "";
 
         // للتجربة لو السيرفر مطفي: غيّريها إلى true (ترجع أمثلة ردود جاهزة بالتناوب)
         const USE_MOCK = false;
@@ -482,110 +476,113 @@
             const label = result.verdict_ar || v.text;
             const percent = Number(result.fake_probability).toFixed(1);
 
-                       errorBox.style.display = "none";
+            errorBox.style.display = "none";
             successContent.style.display = "block";
+
             verdictBox.className = "verdict-box box-" + v.cls;
             verdictLabel.className = "verdict-label verdict-" + v.cls;
-            verdictLabel.textContent = label;
-            verdictPercent.textContent = "احتمال التزييف: " + percent + "%";
+            verdictLabel.textContent = label + " — " + percent + "%";
+
+            verdictPercent.textContent = "نسبة احتمال التزييف";
             verdictNote.textContent = v.note;
             verdictNote.style.display = v.note ? "block" : "none";
-            durationValue.textContent = (result.duration_sec != null) ? Number(result.duration_sec).toFixed(1) + " ثانية" : "-";
-            modelVersionValue.textContent = result.model_version || "-";
+
+            durationValue.textContent = Number(result.duration_sec).toFixed(1) + " ثانية";
+            modelVersionValue.textContent = result.model_version || "";
+
             if (result.warning) {
                 warningBox.textContent = "⚠️ " + result.warning;
                 warningBox.style.display = "block";
             } else {
-                warningBox.textContent = "";
                 warningBox.style.display = "none";
             }
+
             resultsSection.style.display = "block";
         }
+
         function handleResult(result) {
             if (result && result.status === "success") {
                 showSuccess(result);
-            } else if (result && result.message_ar) {
+            } else if (result && result.status === "error" && result.message_ar) {
                 showError(result.message_ar);
             } else {
                 showError(SERVER_DOWN_MSG);
             }
         }
-        function setFile(file) {
-            if (!file) return;
-            const dt = new DataTransfer();
-            dt.items.add(file);
-            fileInput.files = dt.files;
-            fileInput.dispatchEvent(new Event('change'));
-        }
-        // السحب والإفلات على مربع الرفع
-        const uploadContainer = document.querySelector('.upload-container');
-        ['dragover', 'dragenter'].forEach(ev => uploadContainer.addEventListener(ev, e => {
-            e.preventDefault();
-            uploadContainer.style.borderColor = "var(--accent-color)";
-        }));
-        ['dragleave', 'drop'].forEach(ev => uploadContainer.addEventListener(ev, e => {
-            e.preventDefault();
-            uploadContainer.style.borderColor = "";
-        }));
-        uploadContainer.addEventListener('drop', e => {
-            if (e.dataTransfer && e.dataTransfer.files.length > 0) setFile(e.dataTransfer.files[0]);
-        });
+
         async function analyzeAudio() {
-            const file = fileInput.files[0];
-            if (!file) {
-                showError("اختر ملفًا صوتيًا أولًا");
+            if (fileInput.files.length === 0) return;
+            const selectedFile = fileInput.files[0];
+
+            // لازم يكون في اسم الملف امتداد (مثل voice.m4a)
+            const name = selectedFile.name || "";
+            if (name.lastIndexOf(".") <= 0 || name.lastIndexOf(".") === name.length - 1) {
+                showError("اسم الملف لازم يحتوي على امتداد (مثل voice.m4a)");
                 return;
             }
-            let name = file.name || "voice.m4a";
-            let ext = name.includes(".") ? name.split(".").pop().toLowerCase() : "";
-            if (!ext) { name = name + ".m4a"; ext = "m4a"; }
+            const ext = name.split('.').pop().toLowerCase();
             if (!ALLOWED_EXT.includes(ext)) {
                 showError("صيغة الملف غير مدعومة");
                 return;
             }
-            if (file.size > MAX_SIZE) {
+            if (selectedFile.size > MAX_SIZE) {
                 showError("حجم الملف أكبر من 25 ميجابايت");
                 return;
             }
+
+            // حالة التحميل
             resultsSection.style.display = "none";
             loadingBox.style.display = "block";
             analyzeBtn.disabled = true;
+            analyzeBtn.textContent = "جاري التحليل...";
+
+            // وضع التجربة (بدون سيرفر)
             if (USE_MOCK) {
-                setTimeout(() => {
-                    loadingBox.style.display = "none";
-                    analyzeBtn.disabled = false;
-                    handleResult(MOCK_RESPONSES[mockIndex++ % MOCK_RESPONSES.length]);
-                }, 1200);
+                await new Promise(r => setTimeout(r, 1500));
+                const mock = MOCK_RESPONSES[mockIndex % MOCK_RESPONSES.length];
+                mockIndex++;
+                loadingBox.style.display = "none";
+                handleResult(mock);
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = "بدء التحليل الفوري";
                 return;
             }
+
             const controller = new AbortController();
             const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
             try {
                 const form = new FormData();
-                form.append("file", file, name);
+                form.append("file", selectedFile, name);
+
                 const res = await fetch(API_URL + "/analyze", {
                     method: "POST",
                     body: form,
                     signal: controller.signal
                 });
+
                 let result = null;
                 try {
                     result = await res.json();
                 } catch (e) {
                     result = null;
                 }
+
+                loadingBox.style.display = "none";
                 handleResult(result);
             } catch (err) {
                 // لا يوجد اتصال بالسيرفر أو انتهت المهلة
+                loadingBox.style.display = "none";
                 showError(SERVER_DOWN_MSG);
             } finally {
                 clearTimeout(timer);
-                loadingBox.style.display = "none";
                 analyzeBtn.disabled = false;
+                analyzeBtn.textContent = "بدء التحليل الفوري";
             }
         }
     </script>
+
 </body>
 </html>
 
-
+            
