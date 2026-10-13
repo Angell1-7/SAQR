@@ -1,3 +1,5 @@
+تعديل ذكي جداً! نخلي قائدة الفريق في المكان الأول في القائمة، ونعطيها مهام الطالبة الأولى (تطوير الواجهات وتصميم تجربة المستخدم Frontend & UI/UX) مع الحفاظ على لقبها القيادي ودورها الإشرافي.
+هذا هو كود صفحة team.html المحدث والنهائي بهذا الترتيب:
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -30,7 +32,7 @@
             background-color: rgba(8, 15, 37, 0.9); backdrop-filter: blur(12px);
             position: sticky; top: 0; z-index: 100;
         }
-        .logo { font-size: 1.6rem; font-weight: 700; color: var(--accent-color); }
+        .logo { font-size: 1.6rem; font-weight: 700; color: var(--accent-color); display: flex; align-items: center; }
         .logo span { color: var(--text-main); }
         nav ul { display: flex; gap: 30px; list-style: none; }
         nav ul li a { color: var(--text-muted); text-decoration: none; font-weight: 600; transition: color 0.3s; position: relative; padding-bottom: 5px; }
@@ -60,7 +62,7 @@
             box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15);
         }
 
-        /* تنسيق خاص لبطاقة القائدة لتبرز بشكل مميز */
+        /* تنسيق خاص ببطاقة القائدة لتبرز في المقدمة */
         .team-card.leader {
             border-color: var(--leader-color);
             background: linear-gradient(135deg, #111b38 0%, #1e1b18 100%);
@@ -100,7 +102,10 @@
 <body>
 
     <header>
-        <div class="logo">🦅 صقر <span>(SAQR)</span></div>
+        <div class="logo">
+            <!-- إذا أردتِ إضافة الشعار الجديد لاحقاً ضعي كود الصورة هنا -->
+            صقر <span>(SAQR)</span>
+        </div>
         <nav>
             <ul>
                 <li><a href="index.html">الرئيسية</a></li>
@@ -115,40 +120,40 @@
         <p class="subtitle">طالبات الكلية التقنية الرقمية للبنات بالرياض</p>
 
         <div class="team-grid">
-            <!-- الطالبة 1 -->
-            <div class="team-card">
-                <div class="avatar">👩‍💻</div>
-                <h3>اسم الطالبة 1</h3>
-                <p>تطوير الواجهات وتصميم تجربة المستخدم (UI/UX & Frontend)</p>
-            </div>
-
-            <!-- الطالبة 2 -->
-            <div class="team-card">
-                <div class="avatar">📊</div>
-                <h3>اسم الطالبة 2</h3>
-                <p>معالجة الصوتيات وتطوير خوارزميات الذكاء الاصطناعي (AI Specialist)</p>
-            </div>
-
-            <!-- الطالبة 3 -->
-            <div class="team-card">
-                <div class="avatar">⚙️</div>
-                <h3>اسم الطالبة 3</h3>
-                <p>تطوير الخادم والربط البرمجي (Backend & Flask Developer)</p>
-            </div>
-
-            <!-- الطالبة 4 -->
-            <div class="team-card">
-                <div class="avatar">🗄️</div>
-                <h3>اسم الطالبة 4</h3>
-                <p>إدارة قواعد البيانات ونماذج النظام (Database Administrator)</p>
-            </div>
-
-            <!-- قائدة الفريق (الطالبة 5) -->
+            <!-- قائدة الفريق (في المقدمة وتأخذ مهام الواجهات) -->
             <div class="team-card leader">
                 <span class="leader-badge">قائدة الفريق</span>
                 <div class="avatar">👑</div>
-                <h3>اسم الطالبة 5</h3>
-                <p>إدارة المشروع والتنسيق العام والتوثيق (Team Leader & QA)</p>
+                <h3>اسم قائدة الفريق</h3>
+                <p>قادة الفريق وتطوير الواجهات الأمامية وتجربة المستخدم (Team Leader & Frontend/UI)</p>
+            </div>
+
+            <!-- العضو الثاني -->
+            <div class="team-card">
+                <div class="avatar">📊</div>
+                <h3>اسم العضو الثاني</h3>
+                <p>معالجة الصوتيات وتطوير خوارزميات الذكاء الاصطناعي (AI Specialist)</p>
+            </div>
+
+            <!-- العضو الثالث -->
+            <div class="team-card">
+                <div class="avatar">⚙️</div>
+                <h3>اسم العضو الثالث</h3>
+                <p>تطوير الخادم والربط البرمجي (Backend & Flask Developer)</p>
+            </div>
+
+            <!-- العضو الرابع -->
+            <div class="team-card">
+                <div class="avatar">🗄️</div>
+                <h3>اسم العضو الرابع</h3>
+                <p>إدارة قواعد البيانات ونماذج النظام (Database Administrator)</p>
+            </div>
+
+            <!-- العضو الخامس -->
+            <div class="team-card">
+                <div class="avatar">👩‍💻</div>
+                <h3>اسم العضو الخامس</h3>
+                <p>اختبار النظام وتوثيق المشروع (QA & Documentation)</p>
             </div>
         </div>
     </main>
@@ -159,3 +164,5 @@
 
 </body>
 </html>
+
+انسخي هذا الكود وحدثيه في مستودع GitHub عندك، وبيصير الترتيب ممتاز: القائدة في الواجهة ومعها مهامك الأساسية في التطوير والواجهات! 🦅✨
