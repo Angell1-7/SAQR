@@ -10,6 +10,7 @@
             --bg-color: #080f25;
             --card-bg: #111b38;
             --accent-color: #38bdf8;
+            --leader-color: #f59e0b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: #1e293b;
@@ -38,19 +39,19 @@
             content: ''; position: absolute; bottom: 0; right: 0; width: 100%; height: 2px; background-color: var(--accent-color);
         }
 
-        main { flex: 1; padding: 60px 8%; max-width: 1000px; margin: 0 auto; text-align: center; }
+        main { flex: 1; padding: 60px 8%; max-width: 1100px; margin: 0 auto; text-align: center; }
         h1 { font-size: 2.3rem; margin-bottom: 10px; color: var(--accent-color); font-weight: 700; }
         .subtitle { color: var(--text-muted); margin-bottom: 45px; font-size: 1.1rem; }
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
         }
 
         .team-card {
             background-color: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 18px; padding: 35px 20px; transition: all 0.3s ease;
+            border-radius: 18px; padding: 30px 15px; transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         .team-card:hover {
@@ -58,14 +59,40 @@
             border-color: var(--accent-color);
             box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15);
         }
-        .avatar {
-            width: 85px; height: 85px; background: rgba(56, 189, 248, 0.1);
-            color: var(--accent-color); font-size: 2.2rem; display: flex;
-            align-items: center; justify-content: center; border-radius: 50%;
-            margin: 0 auto 20px auto; border: 2px solid var(--accent-color);
+
+        /* تنسيق خاص لبطاقة القائدة لتبرز بشكل مميز */
+        .team-card.leader {
+            border-color: var(--leader-color);
+            background: linear-gradient(135deg, #111b38 0%, #1e1b18 100%);
         }
-        .team-card h3 { margin-bottom: 10px; color: var(--text-main); font-size: 1.25rem; }
-        .team-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+        .team-card.leader:hover {
+            border-color: #fbbf24;
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.2);
+        }
+        .team-card.leader .avatar {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--leader-color);
+            border-color: var(--leader-color);
+        }
+        .leader-badge {
+            display: inline-block;
+            background-color: var(--leader-color);
+            color: #080f25;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .avatar {
+            width: 80px; height: 80px; background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color); font-size: 2rem; display: flex;
+            align-items: center; justify-content: center; border-radius: 50%;
+            margin: 0 auto 15px auto; border: 2px solid var(--accent-color);
+        }
+        .team-card h3 { margin-bottom: 8px; color: var(--text-main); font-size: 1.2rem; }
+        .team-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
 
         footer { text-align: center; padding: 25px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.9rem; background-color: rgba(8, 15, 37, 0.5); }
     </style>
@@ -88,22 +115,40 @@
         <p class="subtitle">طالبات الكلية التقنية الرقمية للبنات بالرياض</p>
 
         <div class="team-grid">
+            <!-- الطالبة 1 -->
             <div class="team-card">
                 <div class="avatar">👩‍💻</div>
                 <h3>اسم الطالبة 1</h3>
-                <p>تطوير واجهات المستخدم والربط الأمامي (Frontend)</p>
+                <p>تطوير الواجهات وتصميم تجربة المستخدم (UI/UX & Frontend)</p>
             </div>
 
+            <!-- الطالبة 2 -->
             <div class="team-card">
                 <div class="avatar">📊</div>
                 <h3>اسم الطالبة 2</h3>
-                <p>معالجة الإشارات الصوتية وبناء النماذج (AI & Audio)</p>
+                <p>معالجة الصوتيات وتطوير خوارزميات الذكاء الاصطناعي (AI Specialist)</p>
             </div>
 
+            <!-- الطالبة 3 -->
             <div class="team-card">
                 <div class="avatar">⚙️</div>
                 <h3>اسم الطالبة 3</h3>
-                <p>إدارة البيانات وقاعدة البيانات والنظام (Backend)</p>
+                <p>تطوير الخادم والربط البرمجي (Backend & Flask Developer)</p>
+            </div>
+
+            <!-- الطالبة 4 -->
+            <div class="team-card">
+                <div class="avatar">🗄️</div>
+                <h3>اسم الطالبة 4</h3>
+                <p>إدارة قواعد البيانات ونماذج النظام (Database Administrator)</p>
+            </div>
+
+            <!-- قائدة الفريق (الطالبة 5) -->
+            <div class="team-card leader">
+                <span class="leader-badge">قائدة الفريق</span>
+                <div class="avatar">👑</div>
+                <h3>اسم الطالبة 5</h3>
+                <p>إدارة المشروع والتنسيق العام والتوثيق (Team Leader & QA)</p>
             </div>
         </div>
     </main>
