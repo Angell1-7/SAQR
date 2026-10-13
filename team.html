@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -45,16 +46,22 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             text-align: right;
         }
 
+  
         .team-card {
-            background-color: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 18px; padding: 25px; transition: all 0.3s ease;
+            background-color: var(--card-bg); 
+            border: 1px solid var(--border-color);
+            border-radius: 18px; 
+            padding: 25px; 
+            transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            display: flex; flex-direction: column; justify-content: space-between;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between;
         }
         .team-card:hover {
             transform: translateY(-6px);
@@ -62,14 +69,13 @@
             box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15);
         }
 
-     
+    
         .team-card.leader {
-            border-color: var(--leader-color);
-            background: linear-gradient(135deg, #111b38 0%, #1e1b18 100%);
+            border-color: var(--border-color);
+            background: linear-gradient(135deg, #111b38 0%, #0c1830 100%);
         }
         .team-card.leader:hover {
-            border-color: #fbbf24;
-            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.2);
+            border-color: var(--accent-color);
         }
         .leader-badge {
             display: inline-block;
@@ -99,7 +105,6 @@
         }
 
         .member-info h3 { color: var(--text-main); font-size: 1.1rem; margin-bottom: 2px; }
-        .id-num { color: var(--text-muted); font-size: 0.85rem; font-family: monospace; }
 
         .tasks-box {
             background-color: rgba(8, 15, 37, 0.5);
@@ -111,7 +116,6 @@
         .tasks-box h4 {
             font-size: 0.85rem; color: var(--accent-color); margin-bottom: 6px; font-weight: 600;
         }
-        .team-card.leader .tasks-box h4 { color: var(--leader-color); }
         .tasks-box ul {
             list-style: none; padding-right: 0;
         }
@@ -122,7 +126,6 @@
         .tasks-box ul li::before {
             content: '•'; position: absolute; right: 0; color: var(--accent-color); font-weight: bold;
         }
-        .team-card.leader .tasks-box ul li::before { color: var(--leader-color); }
 
         footer { text-align: center; padding: 25px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.9rem; background-color: rgba(8, 15, 37, 0.5); margin-top: auto; }
     </style>
@@ -155,18 +158,16 @@
                         <div class="avatar">👩🏽‍💻</div>
                         <div class="member-info">
                             <h3>سديم عبدالرحمن الحربي</h3>
-                          
                         </div>
                     </div>
                 </div>
                 <div class="tasks-box">
                     <h4>المهام:</h4>
                     <ul>
-                            <li>الواجهة الأمامية</li>
-                           <li>برمجة واجهات المستخدم</li>
-                        <li>إعداد نموذج خطة المشروع </li>
+                        <li>الواجهة الأمامية</li>
+                        <li>برمجة واجهات المستخدم</li>
+                        <li>إعداد نموذج خطة المشروع</li>
                         <li>كتابة التقرير النهائي للمشروع</li>
-                
                     </ul>
                 </div>
             </div>
@@ -178,15 +179,14 @@
                         <div class="avatar">💻</div>
                         <div class="member-info">
                             <h3>فجر عمار الذيابي</h3>
-                           
                         </div>
                     </div>
                 </div>
                 <div class="tasks-box">
                     <h4>المهام:</h4>
                     <ul>
-                          <li>دراسة الجدوى وتحديد الموارد والمخاطر والميزانية</li>
-                    <li>التنسيق للعرض التقديمي والمناقشة أمام اللجنة</li>
+                        <li>دراسة الجدوى وتحديد الموارد والمخاطر والميزانية</li>
+                        <li>التنسيق للعرض التقديمي والمناقشة أمام اللجنة</li>
                     </ul>
                 </div>
             </div>
@@ -198,7 +198,6 @@
                         <div class="avatar">📊</div>
                         <div class="member-info">
                             <h3>أريام سامي البيداب</h3>
-                          
                         </div>
                     </div>
                 </div>
@@ -218,14 +217,13 @@
                         <div class="avatar">⚙️</div>
                         <div class="member-info">
                             <h3>رغد عقوب العتيبي</h3>
-                            
                         </div>
                     </div>
                 </div>
                 <div class="tasks-box">
                     <h4>المهام:</h4>
                     <ul>
-                        <li>لواجهة الخلفية والذكاء الاصطناعي</li>
+                        <li>الواجهة الخلفية والذكاء الاصطناعي</li>
                     </ul>
                 </div>
             </div>
@@ -237,7 +235,6 @@
                         <div class="avatar">🗄️</div>
                         <div class="member-info">
                             <h3>روان راشد القحطاني</h3>
-                          
                         </div>
                     </div>
                 </div>
@@ -260,3 +257,4 @@
 </body>
 </html>
 
+انسخي هذا الكود بالكامل واستبدليه بملف team.html في مستودع GitHub عندك، وراح يظهر بالشكل الهادئ، الموحد، والمرتب تماماً كما طلبتِ! 🦅✨
