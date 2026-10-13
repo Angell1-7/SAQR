@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فريق العمل | مشروع صقر (SAQR)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #080f25;
+            --card-bg: #111b38;
+            --accent-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; animation: fadeIn 0.8s ease-in-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; border-bottom: 1px solid var(--border-color);
+            background-color: rgba(8, 15, 37, 0.9); backdrop-filter: blur(12px);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-size: 1.6rem; font-weight: 700; color: var(--accent-color); }
+        .logo span { color: var(--text-main); }
+        nav ul { display: flex; gap: 30px; list-style: none; }
+        nav ul li a { color: var(--text-muted); text-decoration: none; font-weight: 600; transition: color 0.3s; position: relative; padding-bottom: 5px; }
+        nav ul li a:hover, nav ul li a.active { color: var(--accent-color); }
+        nav ul li a.active::after {
+            content: ''; position: absolute; bottom: 0; right: 0; width: 100%; height: 2px; background-color: var(--accent-color);
+        }
+
+        main { flex: 1; padding: 60px 8%; max-width: 1000px; margin: 0 auto; text-align: center; }
+        h1 { font-size: 2.3rem; margin-bottom: 10px; color: var(--accent-color); font-weight: 700; }
+        .subtitle { color: var(--text-muted); margin-bottom: 45px; font-size: 1.1rem; }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .team-card {
+            background-color: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 18px; padding: 35px 20px; transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .team-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15);
+        }
+        .avatar {
+            width: 85px; height: 85px; background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color); font-size: 2.2rem; display: flex;
+            align-items: center; justify-content: center; border-radius: 50%;
+            margin: 0 auto 20px auto; border: 2px solid var(--accent-color);
+        }
+        .team-card h3 { margin-bottom: 10px; color: var(--text-main); font-size: 1.25rem; }
+        .team-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+
+        footer { text-align: center; padding: 25px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.9rem; background-color: rgba(8, 15, 37, 0.5); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🦅 صقر <span>(SAQR)</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">عن النظام</a></li>
+                <li><a href="team.html" class="active">فريق العمل</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>فريق تطوير مشروع صقر</h1>
+        <p class="subtitle">طالبات الكلية التقنية الرقمية للبنات بالرياض</p>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="avatar">👩‍💻</div>
+                <h3>اسم الطالبة 1</h3>
+                <p>تطوير واجهات المستخدم والربط الأمامي (Frontend)</p>
+            </div>
+
+            <div class="team-card">
+                <div class="avatar">📊</div>
+                <h3>اسم الطالبة 2</h3>
+                <p>معالجة الإشارات الصوتية وبناء النماذج (AI & Audio)</p>
+            </div>
+
+            <div class="team-card">
+                <div class="avatar">⚙️</div>
+                <h3>اسم الطالبة 3</h3>
+                <p>إدارة البيانات وقاعدة البيانات والنظام (Backend)</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - مشروع تخرج صقر (SAQR)</p>
+    </footer>
+
+</body>
+</html>
