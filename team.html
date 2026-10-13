@@ -1,5 +1,3 @@
-تعديل ذكي جداً! نخلي قائدة الفريق في المكان الأول في القائمة، ونعطيها مهام الطالبة الأولى (تطوير الواجهات وتصميم تجربة المستخدم Frontend & UI/UX) مع الحفاظ على لقبها القيادي ودورها الإشرافي.
-هذا هو كود صفحة team.html المحدث والنهائي بهذا الترتيب:
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -41,20 +39,22 @@
             content: ''; position: absolute; bottom: 0; right: 0; width: 100%; height: 2px; background-color: var(--accent-color);
         }
 
-        main { flex: 1; padding: 60px 8%; max-width: 1100px; margin: 0 auto; text-align: center; }
+        main { flex: 1; padding: 60px 8%; max-width: 1200px; margin: 0 auto; text-align: center; }
         h1 { font-size: 2.3rem; margin-bottom: 10px; color: var(--accent-color); font-weight: 700; }
         .subtitle { color: var(--text-muted); margin-bottom: 45px; font-size: 1.1rem; }
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
+            text-align: right;
         }
 
         .team-card {
             background-color: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 18px; padding: 30px 15px; transition: all 0.3s ease;
+            border-radius: 18px; padding: 25px; transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex; flex-direction: column; justify-content: space-between;
         }
         .team-card:hover {
             transform: translateY(-6px);
@@ -62,7 +62,7 @@
             box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15);
         }
 
-        /* تنسيق خاص ببطاقة القائدة لتبرز في المقدمة */
+     
         .team-card.leader {
             border-color: var(--leader-color);
             background: linear-gradient(135deg, #111b38 0%, #1e1b18 100%);
@@ -70,11 +70,6 @@
         .team-card.leader:hover {
             border-color: #fbbf24;
             box-shadow: 0 15px 35px rgba(245, 158, 11, 0.2);
-        }
-        .team-card.leader .avatar {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--leader-color);
-            border-color: var(--leader-color);
         }
         .leader-badge {
             display: inline-block;
@@ -84,26 +79,58 @@
             font-weight: 700;
             padding: 3px 10px;
             border-radius: 20px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            width: fit-content;
         }
 
+        .card-header {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 15px;
+        }
         .avatar {
-            width: 80px; height: 80px; background: rgba(56, 189, 248, 0.1);
-            color: var(--accent-color); font-size: 2rem; display: flex;
+            width: 50px; height: 50px; background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color); font-size: 1.4rem; display: flex;
             align-items: center; justify-content: center; border-radius: 50%;
-            margin: 0 auto 15px auto; border: 2px solid var(--accent-color);
+            border: 2px solid var(--accent-color); flex-shrink: 0;
         }
-        .team-card h3 { margin-bottom: 8px; color: var(--text-main); font-size: 1.2rem; }
-        .team-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+        .team-card.leader .avatar {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--leader-color);
+            border-color: var(--leader-color);
+        }
 
-        footer { text-align: center; padding: 25px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.9rem; background-color: rgba(8, 15, 37, 0.5); }
+        .member-info h3 { color: var(--text-main); font-size: 1.1rem; margin-bottom: 2px; }
+        .id-num { color: var(--text-muted); font-size: 0.85rem; font-family: monospace; }
+
+        .tasks-box {
+            background-color: rgba(8, 15, 37, 0.5);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .tasks-box h4 {
+            font-size: 0.85rem; color: var(--accent-color); margin-bottom: 6px; font-weight: 600;
+        }
+        .team-card.leader .tasks-box h4 { color: var(--leader-color); }
+        .tasks-box ul {
+            list-style: none; padding-right: 0;
+        }
+        .tasks-box ul li {
+            color: var(--text-muted); font-size: 0.82rem; margin-bottom: 4px;
+            position: relative; padding-right: 14px; line-height: 1.4;
+        }
+        .tasks-box ul li::before {
+            content: '•'; position: absolute; right: 0; color: var(--accent-color); font-weight: bold;
+        }
+        .team-card.leader .tasks-box ul li::before { color: var(--leader-color); }
+
+        footer { text-align: center; padding: 25px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.9rem; background-color: rgba(8, 15, 37, 0.5); margin-top: auto; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">
-            <!-- إذا أردتِ إضافة الشعار الجديد لاحقاً ضعي كود الصورة هنا -->
             صقر <span>(SAQR)</span>
         </div>
         <nav>
@@ -117,43 +144,111 @@
 
     <main>
         <h1>فريق تطوير مشروع صقر</h1>
-        <p class="subtitle">طالبات الكلية التقنية الرقمية للبنات بالرياض</p>
+        <p class="subtitle">الكلية التقنية الرقمية للبنات بالرياض</p>
 
         <div class="team-grid">
-            <!-- قائدة الفريق (في المقدمة وتأخذ مهام الواجهات) -->
+    
             <div class="team-card leader">
-                <span class="leader-badge">قائدة الفريق</span>
-                <div class="avatar">👑</div>
-                <h3>اسم قائدة الفريق</h3>
-                <p>قادة الفريق وتطوير الواجهات الأمامية وتجربة المستخدم (Team Leader & Frontend/UI)</p>
+                <div>
+                    <span class="leader-badge">قائدة المشروع</span>
+                    <div class="card-header">
+                        <div class="avatar">👩🏽‍💻</div>
+                        <div class="member-info">
+                            <h3>سديم عبدالرحمن الحربي</h3>
+                            <span class="id-num">445204852</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tasks-box">
+                    <h4>المهام:</h4>
+                    <ul>
+                            <li>الواجهة الأمامية</li>
+                           <li>برمجة واجهات المستخدم</li>
+                        <li>إعداد نموذج خطة المشروع </li>
+                        <li>كتابة التقرير النهائي للمشروع</li>
+                
+                    </ul>
+                </div>
             </div>
 
-            <!-- العضو الثاني -->
+        
             <div class="team-card">
-                <div class="avatar">📊</div>
-                <h3>اسم العضو الثاني</h3>
-                <p>معالجة الصوتيات وتطوير خوارزميات الذكاء الاصطناعي (AI Specialist)</p>
+                <div>
+                    <div class="card-header">
+                        <div class="avatar">💻</div>
+                        <div class="member-info">
+                            <h3>فجر عمار الذيابي</h3>
+                            <span class="id-num">445204873</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tasks-box">
+                    <h4>المهام:</h4>
+                    <ul>
+                          <li>دراسة الجدوى وتحديد الموارد والمخاطر والميزانية</li>
+                    <li>التنسيق للعرض التقديمي والمناقشة أمام اللجنة</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- العضو الثالث -->
+        
             <div class="team-card">
-                <div class="avatar">⚙️</div>
-                <h3>اسم العضو الثالث</h3>
-                <p>تطوير الخادم والربط البرمجي (Backend & Flask Developer)</p>
+                <div>
+                    <div class="card-header">
+                        <div class="avatar">📊</div>
+                        <div class="member-info">
+                            <h3>أريام سامي البيداب</h3>
+                            <span class="id-num">445251400</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tasks-box">
+                    <h4>المهام:</h4>
+                    <ul>
+                        <li>التحليل والتصميم</li>
+                        <li>جمع المتطلبات الوظيفية وغير الوظيفية</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- العضو الرابع -->
+          
             <div class="team-card">
-                <div class="avatar">🗄️</div>
-                <h3>اسم العضو الرابع</h3>
-                <p>إدارة قواعد البيانات ونماذج النظام (Database Administrator)</p>
+                <div>
+                    <div class="card-header">
+                        <div class="avatar">⚙️</div>
+                        <div class="member-info">
+                            <h3>رغد عقوب العتيبي</h3>
+                            <span class="id-num">445153349</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tasks-box">
+                    <h4>المهام:</h4>
+                    <ul>
+                        <li>لواجهة الخلفية والذكاء الاصطناعي</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- العضو الخامس -->
+      
             <div class="team-card">
-                <div class="avatar">👩‍💻</div>
-                <h3>اسم العضو الخامس</h3>
-                <p>اختبار النظام وتوثيق المشروع (QA & Documentation)</p>
+                <div>
+                    <div class="card-header">
+                        <div class="avatar">🗄️</div>
+                        <div class="member-info">
+                            <h3>روان راشد القحطاني</h3>
+                            <span class="id-num">445204861</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tasks-box">
+                    <h4>المهام:</h4>
+                    <ul>
+                        <li>اختيار الفكرة وتحديد الأهداف والفئة المستهدفة</li>
+                        <li>قواعد البيانات</li>
+                        <li>المشاركة في تصميم هيكل البيانات الأساسي</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </main>
@@ -165,4 +260,3 @@
 </body>
 </html>
 
-انسخي هذا الكود وحدثيه في مستودع GitHub عندك، وبيصير الترتيب ممتاز: القائدة في الواجهة ومعها مهامك الأساسية في التطوير والواجهات! 🦅✨
