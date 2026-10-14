@@ -552,12 +552,13 @@
                 const form = new FormData();
                 form.append("file", selectedFile, name);
 
-                const res = await fetch(API_URL + "/analyze", {
+                 const res = await fetch(API_URL + "/analyze", {
                     method: "POST",
+                    headers: { "ngrok-skip-browser-warning": "1" },
                     body: form,
                     signal: controller.signal
                 });
-
+                
                 let result = null;
                 try {
                     result = await res.json();
