@@ -14,7 +14,7 @@
             --text-muted: #94a3b8;
             --border-color: #1e293b;
             --success-color: #10b981;
-            /* ألوان جديدة لنتائج التحليل فقط */
+         
             --warning-color: #facc15;
             --danger-color: #ef4444;
             --orange-color: #fb923c;
@@ -65,8 +65,8 @@
         }
 
         .logo-img {
-            height: 110px; /* تكبير حجم الشعار ليناسب المساحة المطلوبة */
-            width: auto;  /* الحفاظ على أبعاد الشعار */
+            height: 110px; 
+            width: auto;  
         }
 
         nav ul {
@@ -202,7 +202,7 @@
             transform: translateY(-2px);
         }
 
-        /* حالة الزر أثناء التحليل (إضافة فقط) */
+     
         .analyze-btn:disabled {
             opacity: 0.7;
             cursor: not-allowed;
@@ -242,9 +242,9 @@
             border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        /* ===== إضافات الربط مع الباك إند (بدون تغيير التصميم الأصلي) ===== */
+        
 
-        /* مؤشر التحميل */
+
         .loading-box {
             display: none;
             margin-top: 35px;
@@ -273,7 +273,7 @@
             to { transform: rotate(360deg); }
         }
 
-        /* الحكم: العنصر الأبرز في النتيجة */
+   
         .verdict-box {
             text-align: center;
             margin-bottom: 20px;
@@ -309,7 +309,7 @@
         .box-suspicious { border-color: rgba(251, 146, 60, 0.35); }
         .box-fake { border-color: rgba(239, 68, 68, 0.35); }
 
-        /* التنبيه (warning) تحت النتيجة بلون أصفر */
+   
         .warning-box {
             display: none;
             margin-top: 5px;
@@ -322,7 +322,6 @@
             font-size: 0.95rem;
         }
 
-        /* رسالة الخطأ تحل محل النتيجة */
         .error-box {
             display: none;
             padding: 15px;
@@ -373,7 +372,7 @@
             <button class="analyze-btn" id="analyzeBtn" onclick="analyzeAudio()">بدء التحليل الفوري</button>
         </div>
 
-        <!-- مؤشر التحميل -->
+  
         <div class="loading-box" id="loadingBox">
             <div class="spinner"></div>
             <p>جاري التحليل... قد يستغرق حتى دقيقة</p>
@@ -382,10 +381,10 @@
         <div class="results-section" id="resultsSection">
             <h3>📊 تقرير نتائج التحليل</h3>
 
-            <!-- رسالة الخطأ (تظهر بدل النتيجة) -->
+            
             <div class="error-box" id="errorBox"></div>
 
-            <!-- النتيجة الناجحة -->
+       
             <div id="successContent">
                 <div class="verdict-box" id="verdictBox">
                     <div class="verdict-label" id="verdictLabel"></div>
@@ -414,16 +413,15 @@
     </footer>
 
     <script>
-        // ضعي هنا عنوان السيرفر الكامل بعد النشر (بدون / في النهاية)
-        // مثال: "https://saqr-api.example.com"
+      
         const API_URL = "";
 
-        // للتجربة لو السيرفر مطفي: غيّريها إلى true (ترجع أمثلة ردود جاهزة بالتناوب)
+     
         const USE_MOCK = false;
 
-        const MAX_SIZE = 25 * 1024 * 1024; // 25 ميجابايت
+        const MAX_SIZE = 25 * 1024 * 1024;
         const ALLOWED_EXT = ["wav", "mp3", "ogg", "opus", "m4a", "aac", "amr", "flac", "webm", "mp4", "mov", "3gp", "mkv"];
-        const REQUEST_TIMEOUT_MS = 120 * 1000; // 120 ثانية
+        const REQUEST_TIMEOUT_MS = 120 * 1000;
         const SERVER_DOWN_MSG = "الخادم غير متاح حاليًا، حاول لاحقًا";
 
         const MOCK_RESPONSES = [
@@ -514,7 +512,6 @@
             if (fileInput.files.length === 0) return;
             const selectedFile = fileInput.files[0];
 
-            // لازم يكون في اسم الملف امتداد (مثل voice.m4a)
             const name = selectedFile.name || "";
             if (name.lastIndexOf(".") <= 0 || name.lastIndexOf(".") === name.length - 1) {
                 showError("اسم الملف لازم يحتوي على امتداد (مثل voice.m4a)");
@@ -530,13 +527,13 @@
                 return;
             }
 
-            // حالة التحميل
+      
             resultsSection.style.display = "none";
             loadingBox.style.display = "block";
             analyzeBtn.disabled = true;
             analyzeBtn.textContent = "جاري التحليل...";
 
-            // وضع التجربة (بدون سيرفر)
+         
             if (USE_MOCK) {
                 await new Promise(r => setTimeout(r, 1500));
                 const mock = MOCK_RESPONSES[mockIndex % MOCK_RESPONSES.length];
@@ -571,7 +568,7 @@
                 loadingBox.style.display = "none";
                 handleResult(result);
             } catch (err) {
-                // لا يوجد اتصال بالسيرفر أو انتهت المهلة
+             
                 loadingBox.style.display = "none";
                 showError(SERVER_DOWN_MSG);
             } finally {
