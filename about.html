@@ -58,11 +58,10 @@
         main { flex: 1; padding: 60px 8%; max-width: 950px; margin: 0 auto; text-align: center; }
         h1 { font-size: 2.3rem; margin-bottom: 25px; color: var(--accent-color); font-weight: 700; }
         
-        /* تنسيق الأزرار (التبويبات) */
         .tabs-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 30px;
             flex-wrap: wrap;
         }
@@ -71,9 +70,9 @@
             background-color: var(--card-bg);
             color: var(--text-muted);
             border: 1px solid var(--border-color);
-            padding: 12px 25px;
+            padding: 12px 20px;
             border-radius: 12px;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -93,7 +92,6 @@
             box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
         }
 
-        /* صندوق المحتوى المتغير */
         .content-box {
             background-color: var(--card-bg); 
             border: 1px solid var(--border-color);
@@ -113,7 +111,6 @@
         .content-box h3 { margin-bottom: 20px; color: var(--accent-color); font-size: 1.4rem; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
         .content-box p { color: var(--text-muted); margin-bottom: 12px; font-size: 1.05rem; }
 
-        /* تنسيق الفيديو التوضيحي */
         .video-container {
             margin-top: 20px;
             text-align: center;
@@ -130,7 +127,6 @@
             border-radius: 8px;
         }
 
-        /* تنسيق بطاقات النتائج والنصائح */
         .info-card {
             display: flex;
             align-items: center;
@@ -182,27 +178,32 @@
     <main>
         <h1>عن نظام صقر (SAQR)</h1>
 
-        <!-- أزرار التبويبات -->
+        <!-- الأزرار الأربعة المنظمة -->
         <div class="tabs-container">
-            <button class="tab-btn active" onclick="showTab('what', event)">🛡️ ما هو مشروع صقر؟</button>
-            <button class="tab-btn" onclick="showTab('how', event)">🔬 آلية عمل النظام والشرح</button>
-            <button class="tab-btn" onclick="showTab('goals', event)">🎯 أهداف المشروع والدليل</button>
+            <button class="tab-btn active" onclick="showTab('what', event)">🛡️ ما هو المشروع والأهداف</button>
+            <button class="tab-btn" onclick="showTab('how', event)">🔬 آلية العمل والفيديو</button>
+            <button class="tab-btn" onclick="showTab('results', event)">📊 معنى النتائج</button>
+            <button class="tab-btn" onclick="showTab('tips', event)">💡 نصائح لنتيجة أدق</button>
         </div>
         
-        <!-- التبويب الأول: ما هو المشروع -->
+        <!-- التبويب الأول: ما هو المشروع والأهداف -->
         <div id="what" class="content-box active">
             <h3>🛡️ ما هو مشروع صقر؟</h3>
             <p>نظام ذكاء اصطناعي متطور مخصص لاكتشاف الأصوات المزيفة والمولدة بتقنيات التزييف العميق (Deepfake Audio)، ويهدف إلى حماية أمن الاتصالات والتحقق من موثوقية التسجيلات الصوتية بدقة عالية.</p>
+            
+            <h3 style="margin-top: 30px;">🎯 أهداف المشروع الرئيسية</h3>
+            <p>• التصدي لعمليات الاحتيال الصوتي وانتحال الشخصيات الرقمية.</p>
+            <p>• تقديم لوحة تحكم سريعة وسهلة الاستخدام للمدققين.</p>
+            <p>• دمج أحدث أبحاث الذكاء الاصطناعي في مجالات الأمن السيبراني.</p>
         </div>
 
-        <!-- التبويب الثاني: آلية العمل + الفيديو -->
+        <!-- التبويب الثاني: آلية العمل والفيديو -->
         <div id="how" class="content-box">
-            <h3>🔬 آلية عمل النظام والفيديو التوضيحي</h3>
+            <h3>🔬 آلية عمل النظام</h3>
             <p>يعتمد النظام على تحويل الملف الصوتي إلى مخطط طيفي (Spectrogram) واستخراج الخصائص الصوتية الخفية، ومن ثم تحليلها عبر نماذج تعلّم عميق متقدمة قادرة على التمييز بين الأنماط البشرية الحقيقية والمصطنعة.</p>
             
             <p style="margin-top: 20px; font-weight: 600; color: var(--text-main);">📹 مقطع توضيحي لطريقة استخدام الموقع:</p>
             <div class="video-container">
-                <!-- استبدلي كلمة tutorial.mp4 باسم ملف الفيديو الخاص بك لو رفعته للمستودع -->
                 <video controls>
                     <source src="tutorial.mp4" type="video/mp4">
                     متصفحك لا يدعم عرض الفيديو.
@@ -210,39 +211,37 @@
             </div>
         </div>
 
-        <!-- التبويب الثالث: الأهداف + معنى النتائج + النصائح -->
-        <div id="goals" class="content-box">
-            <h3>🎯 أهداف المشروع الرئيسية</h3>
-            <p>• التصدي لعمليات الاحتيال الصوتي وانتحال الشخصيات الرقمية.</p>
-            <p>• تقديم لوحة تحكم سريعة وسهلة الاستخدام للمدققين.</p>
-            <p>• دمج أحدث أبحاث الذكاء الاصطناعي في مجالات الأمن السيبراني.</p>
-
-            <h3 style="margin-top: 30px;">📊 معنى النتائج</h3>
+        <!-- التبويب الثالث: معنى النتائج -->
+        <div id="results" class="content-box">
+            <h3>📊 معنى النتائج</h3>
             <div class="info-card">
-                <span>لم يرصد ما يدل على أن الصوت مستنسخ[span_8](start_span)[span_8](end_span)</span>
+                <span>لم يرصد ما يدل على أن الصوت مستنسخ</span>
                 <span class="badge-real">🟢 حقيقي</span>
             </div>
             <div class="info-card">
-                <span>تنبيه وليس حكماً نهائياً، تحقّق بالاتصال على الشخص من رقمه المعروف[span_9](start_span)[span_9](end_span)</span>
+                <span>تنبيه وليس حكماً نهائياً، تحقّق بالاتصال على الشخص من رقمه المعروف</span>
                 <span class="badge-suspicious">🟠 مشكوك</span>
             </div>
             <div class="info-card">
-                <span>يُرجّح أن الصوت مستنسخ: لا تحوّل أموالاً ولا تشارك أي رموز[span_10](start_span)[span_10](end_span)</span>
+                <span>يُرجّح أن الصوت مستنسخ: لا تحوّل أموالاً ولا تشارك أي رموز</span>
                 <span class="badge-fake">🔴 مزيف</span>
             </div>
-            <p class="note-text">كلما ارتفعت النسبة زاد احتمال أن يكون الصوت مزيفاً[span_11](start_span)[span_11](end_span)</p>
+            <p class="note-text">كلما ارتفعت النسبة زاد احتمال أن يكون الصوت مزيفاً</p>
+        </div>
 
-            <h3 style="margin-top: 30px;">💡 نصائح لنتيجة أدق</h3>
+        <!-- التبويب الرابع: نصائح لنتيجة أدق -->
+        <div id="tips" class="content-box">
+            <h3>💡 نصائح لنتيجة أدق</h3>
             <div class="info-card">
-                <span>استخدم مقطعاً فيه كلام واضح لا يقِلّ عن 3 ثوانٍ[span_12](start_span)[span_12](end_span)</span>
+                <span>استخدم مقطعاً فيه كلام واضح لا يقِلّ عن 3 ثوانٍ</span>
                 <span class="badge-tip">🎙️</span>
             </div>
             <div class="info-card">
-                <span>الضجيج والموسيقى وجودة المكالمات قد تقلل دقة الكشف[span_13](start_span)[span_13](end_span)</span>
+                <span>الضجيج والموسيقى وجودة المكالمات قد تقلل دقة الكشف</span>
                 <span class="badge-tip">⚠️</span>
             </div>
             <div class="info-card">
-                <span>صقر أداة مساعدة، والقرار النهائي لك[span_14](start_span)[span_14](end_span)</span>
+                <span>صقر أداة مساعدة، والقرار النهائي لك</span>
                 <span class="badge-tip">🛡️</span>
             </div>
         </div>
