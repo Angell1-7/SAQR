@@ -61,7 +61,7 @@
         .tabs-container {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 15px;
             margin-bottom: 30px;
             flex-wrap: wrap;
         }
@@ -70,9 +70,9 @@
             background-color: var(--card-bg);
             color: var(--text-muted);
             border: 1px solid var(--border-color);
-            padding: 12px 20px;
+            padding: 12px 25px;
             border-radius: 12px;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -178,15 +178,14 @@
     <main>
         <h1>عن نظام صقر (SAQR)</h1>
 
-        <!-- الأزرار الأربعة المنظمة -->
+        <!-- الأزرار الثلاثة المحددة -->
         <div class="tabs-container">
             <button class="tab-btn active" onclick="showTab('what', event)">🛡️ ما هو المشروع والأهداف</button>
             <button class="tab-btn" onclick="showTab('how', event)">🔬 آلية العمل والفيديو</button>
-            <button class="tab-btn" onclick="showTab('results', event)">📊 معنى النتائج ونصائح لنتيجه ادق</button>
-            
+            <button class="tab-btn" onclick="showTab('guidelines', event)">📊 النتائج والنصائح</button>
         </div>
         
-        <!-- التبويب الأول: ما هو المشروع والأهداف -->
+        <!-- التبويب الأول -->
         <div id="what" class="content-box active">
             <h3>🛡️ ما هو مشروع صقر؟</h3>
             <p>نظام ذكاء اصطناعي متطور مخصص لاكتشاف الأصوات المزيفة والمولدة بتقنيات التزييف العميق (Deepfake Audio)، ويهدف إلى حماية أمن الاتصالات والتحقق من موثوقية التسجيلات الصوتية بدقة عالية.</p>
@@ -197,7 +196,7 @@
             <p>• دمج أحدث أبحاث الذكاء الاصطناعي في مجالات الأمن السيبراني.</p>
         </div>
 
-        <!-- التبويب الثاني: آلية العمل والفيديو -->
+        <!-- التبويب الثاني -->
         <div id="how" class="content-box">
             <h3>🔬 آلية عمل النظام</h3>
             <p>يعتمد النظام على تحويل الملف الصوتي إلى مخطط طيفي (Spectrogram) واستخراج الخصائص الصوتية الخفية، ومن ثم تحليلها عبر نماذج تعلّم عميق متقدمة قادرة على التمييز بين الأنماط البشرية الحقيقية والمصطنعة.</p>
@@ -211,8 +210,8 @@
             </div>
         </div>
 
-        <!-- التبويب الثالث: معنى النتائج -->
-        <div id="results" class="content-box">
+        <!-- التبويب الثالث: (معنى النتائج + نصائح لنتيجة أدق مجتمعة مع بعض) -->
+        <div id="guidelines" class="content-box">
             <h3>📊 معنى النتائج</h3>
             <div class="info-card">
                 <span>لم يرصد ما يدل على أن الصوت مستنسخ</span>
@@ -227,8 +226,8 @@
                 <span class="badge-fake">🔴 مزيف</span>
             </div>
             <p class="note-text">كلما ارتفعت النسبة زاد احتمال أن يكون الصوت مزيفاً</p>
-            <div id="tips" class="content-box">
-            <h3>💡 نصائح لنتيجة أدق</h3>
+
+            <h3 style="margin-top: 35px;">💡 نصائح لنتيجة أدق</h3>
             <div class="info-card">
                 <span>استخدم مقطعاً فيه كلام واضح لا يقِلّ عن 3 ثوانٍ</span>
                 <span class="badge-tip">🎙️</span>
@@ -241,10 +240,6 @@
                 <span>صقر أداة مساعدة، والقرار النهائي لك</span>
                 <span class="badge-tip">🛡️</span>
             </div>
-        </div>
-
-        <!-- التبويب الرابع: نصائح لنتيجة أدق -->
-        <
         </div>
     </main>
 
