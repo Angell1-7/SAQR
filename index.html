@@ -1,3 +1,4 @@
+
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -155,9 +156,21 @@
         }
 
         .upload-text {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: var(--text-muted);
             font-size: 1.05rem;
+        }
+
+        /* تنسيق تنبيه نصائح الرفع المضاف */
+        .upload-tip {
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            color: var(--accent-color);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         .file-input {
@@ -241,9 +254,6 @@
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.03);
         }
-
-        
-
 
         .loading-box {
             display: none;
@@ -361,11 +371,15 @@
 
     <main>
         <h1 class="hero-title">نظام كشف الأصوات المزيفة <span>بالذكاء الاصطناعي</span></h1>
-        <p class="hero-subtitle">ارفع ملفاً صوتياً لتحليله عبر خوارزميات المخططات الطيفية والتحقق من أصالته بكل دقة.</p>
+        <p class="hero-subtitle">ارفع ملفاً صوتياً لتحليله عبر نموذج التحليل المباشر للموجة الصوتية والتحقق من أصالته بكل دقة.</p>
 
         <div class="upload-container">
             <div class="upload-icon">🎵</div>
             <p class="upload-text" id="fileNameDisplay">اسحب وأفرغ ملف الصوت هنا، أو اضغط للاختيار</p>
+            
+        
+            <div class="upload-tip">💡 للحصول على أدق نتيجة، ارفع الملف الأصلي (مثل فويس واتساب) بدل تسجيله من السماعة</div>
+
             <input type="file" id="audioFile" class="file-input" accept="audio/*,video/*,.wav,.mp3,.ogg,.opus,.m4a,.aac,.amr,.flac,.webm,.mp4,.mov,.3gp,.mkv">
             <button class="upload-btn" onclick="document.getElementById('audioFile').click()">اختيار ملف صوتي</button>
             <br>
@@ -397,7 +411,7 @@
                 </div>
                 <div class="result-item">
                     <span>نوع التحليل:</span>
-                    <span>المخطط الطيفي (Spectrogram Analysis)</span>
+                    <span>تحليل الموجة الصوتية مباشرة (XLS-R)</span>
                 </div>
                 <div class="result-item">
                     <span>نسخة النموذج:</span>
@@ -581,3 +595,5 @@
 
 </body>
 </html>
+
+روابط وتعديلات متناسقة 100% مع الشغل ومريحة جداً وقت المناقشة عشان ما يصير أي تناقض تقني قدام اللجنة! بالتوفيق في المشروع وعقبال التخرج بأعلى الدرجات يا رب 🎓✨
