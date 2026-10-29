@@ -158,4 +158,422 @@
         }
 
         .upload-tip {
-            background: rgba(56
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            color: var(--accent-color);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-btn {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 12px 32px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+        }
+
+        .upload-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .analyze-btn {
+            margin-top: 20px;
+            background-color: var(--success-color);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 10px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: none;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .analyze-btn:hover {
+            background-color: #059669;
+            transform: translateY(-2px);
+        }
+
+        .analyze-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-section {
+            display: none;
+            margin-top: 35px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 650px;
+            text-align: right;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .results-section h3 {
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            font-size: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .loading-box {
+            display: none;
+            margin-top: 35px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 650px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            color: var(--text-muted);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .spinner {
+            width: 42px;
+            height: 42px;
+            margin: 0 auto 15px;
+            border: 4px solid var(--border-color);
+            border-top-color: var(--accent-color);
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .verdict-box {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 22px 15px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .verdict-label {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .verdict-percent {
+            margin-top: 6px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .verdict-note {
+            margin-top: 10px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .verdict-real { color: var(--success-color); }
+        .verdict-suspicious { color: var(--orange-color); }
+        .verdict-fake { color: var(--danger-color); }
+
+        .box-real { border-color: rgba(16, 185, 129, 0.35); }
+        .box-suspicious { border-color: rgba(251, 146, 60, 0.35); }
+        .box-fake { border-color: rgba(239, 68, 68, 0.35); }
+
+        .warning-box {
+            display: none;
+            margin-top: 5px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            color: var(--warning-color);
+            background: rgba(250, 204, 21, 0.08);
+            border: 1px solid rgba(250, 204, 21, 0.25);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .error-box {
+            display: none;
+            padding: 15px;
+            border-radius: 10px;
+            color: var(--danger-color);
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            line-height: 1.7;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background-color: rgba(8, 15, 37, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="شعار صقر" class="logo-img">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="about.html">عن النظام</a></li>
+                <li><a href="awareness.html">التوعية الأمنية</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+                <li><a href="team.html">فريق العمل</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="hero-title">نظام كشف الأصوات المزيفة <span>بالذكاء الاصطناعي</span></h1>
+        <p class="hero-subtitle">ارفع ملفاً صوتياً لتحليله عبر نموذج التحليل المباشر للموجة الصوتية والتحقق من أصالته بكل دقة.</p>
+
+        <div class="upload-container">
+            <div class="upload-icon">🎵</div>
+            <p class="upload-text" id="fileNameDisplay">اسحب وأفرغ ملف الصوت هنا، أو اضغط للاختيار</p>
+            
+            <div class="upload-tip">💡 للحصول على أدق نتيجة، ارفع الملف الأصلي (مثل فويس واتساب) بدل تسجيله من السماعة</div>
+
+            <input type="file" id="audioFile" class="file-input" accept="audio/*,video/*,.wav,.mp3,.ogg,.opus,.m4a,.aac,.amr,.flac,.webm,.mp4,.mov,.3gp,.mkv">
+            <button class="upload-btn" onclick="document.getElementById('audioFile').click()">اختيار ملف صوتي</button>
+            <br>
+            <button class="analyze-btn" id="analyzeBtn" onclick="analyzeAudio()">بدء التحليل الفوري</button>
+        </div>
+
+        <div class="loading-box" id="loadingBox">
+            <div class="spinner"></div>
+            <p>جاري التحليل... قد يستغرق حتى دقيقة</p>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <h3>📊 تقرير نتائج التحليل</h3>
+
+            <div class="error-box" id="errorBox"></div>
+
+            <div id="successContent">
+                <div class="verdict-box" id="verdictBox">
+                    <div class="verdict-label" id="verdictLabel"></div>
+                    <div class="verdict-percent" id="verdictPercent"></div>
+                    <div class="verdict-note" id="verdictNote"></div>
+                </div>
+                <div class="result-item">
+                    <span>مدة المقطع:</span>
+                    <span id="durationValue"></span>
+                </div>
+                <div class="result-item">
+                    <span>نوع التحليل:</span>
+                    <span>تحليل الموجة الصوتية مباشرة (XLS-R)</span>
+                </div>
+                <div class="result-item">
+                    <span>نسخة النموذج:</span>
+                    <span id="modelVersionValue"></span>
+                </div>
+                <div class="warning-box" id="warningBox"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - مشروع تخرج صقر (SAQR)</p>
+    </footer>
+
+    <script>
+        const API_URL = "https://zeppelin-diaphragm-pantomime.ngrok-free.dev";
+        const USE_MOCK = false;
+
+        const MAX_SIZE = 25 * 1024 * 1024;
+        const ALLOWED_EXT = ["wav", "mp3", "ogg", "opus", "m4a", "aac", "amr", "flac", "webm", "mp4", "mov", "3gp", "mkv"];
+        const REQUEST_TIMEOUT_MS = 120 * 1000;
+        const SERVER_DOWN_MSG = "الخادم غير متاح حاليًا، حاول لاحقًا";
+
+        const MOCK_RESPONSES = [
+            {"status":"success","verdict":"real","verdict_ar":"حقيقي","fake_probability":6.3,"audio_quality":"normal","warning":null,"duration_sec":15.4,"model_version":"saqr_v2_final"},
+            {"status":"success","verdict":"suspicious","verdict_ar":"مشكوك","fake_probability":84.5,"audio_quality":"call","warning":"جودة الصوت منخفضة (نطاق ترددي ضيق مثل المكالمات)، وقد تكون دقة الكشف أقل","duration_sec":6.1,"model_version":"saqr_v2_final"},
+            {"status":"success","verdict":"fake","verdict_ar":"مزيف","fake_probability":97.2,"audio_quality":"normal","warning":null,"duration_sec":12.0,"model_version":"saqr_v2_final"},
+            {"status":"error","error_code":"no_speech","message_ar":"لم يتم العثور على كلام كافٍ في المقطع"}
+        ];
+        let mockIndex = 0;
+
+        const fileInput = document.getElementById('audioFile');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const resultsSection = document.getElementById('resultsSection');
+        const loadingBox = document.getElementById('loadingBox');
+        const errorBox = document.getElementById('errorBox');
+        const successContent = document.getElementById('successContent');
+        const verdictBox = document.getElementById('verdictBox');
+        const verdictLabel = document.getElementById('verdictLabel');
+        const verdictPercent = document.getElementById('verdictPercent');
+        const verdictNote = document.getElementById('verdictNote');
+        const durationValue = document.getElementById('durationValue');
+        const modelVersionValue = document.getElementById('modelVersionValue');
+        const warningBox = document.getElementById('warningBox');
+
+        const VERDICTS = {
+            real:       { text: "حقيقي",  cls: "real",       note: "" },
+            suspicious: { text: "مشكوك",  cls: "suspicious", note: "تنبيه وليس حكمًا نهائيًا، تحقّق بالاتصال على الشخص من رقمه المعروف" },
+            fake:       { text: "مزيف",   cls: "fake",       note: "" }
+        };
+
+        fileInput.addEventListener('change', function() {
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = "الملف المختار: " + fileInput.files[0].name;
+                analyzeBtn.style.display = "inline-block";
+                resultsSection.style.display = "none";
+                loadingBox.style.display = "none";
+            }
+        });
+
+        function showError(message) {
+            successContent.style.display = "none";
+            errorBox.textContent = message;
+            errorBox.style.display = "block";
+            resultsSection.style.display = "block";
+        }
+
+        function showSuccess(result) {
+            const v = VERDICTS[result.verdict] || VERDICTS.suspicious;
+            const label = result.verdict_ar || v.text;
+            const percent = Number(result.fake_probability).toFixed(1);
+
+            errorBox.style.display = "none";
+            successContent.style.display = "block";
+
+            verdictBox.className = "verdict-box box-" + v.cls;
+            verdictLabel.className = "verdict-label verdict-" + v.cls;
+            verdictLabel.textContent = label + " — " + percent + "%";
+
+            verdictPercent.textContent = "نسبة احتمال التزييف";
+            verdictNote.textContent = v.note;
+            verdictNote.style.display = v.note ? "block" : "none";
+
+            durationValue.textContent = Number(result.duration_sec).toFixed(1) + " ثانية";
+            modelVersionValue.textContent = result.model_version || "";
+
+            if (result.warning) {
+                warningBox.textContent = "⚠️ " + result.warning;
+                warningBox.style.display = "block";
+            } else {
+                warningBox.style.display = "none";
+            }
+
+            resultsSection.style.display = "block";
+        }
+
+        function handleResult(result) {
+            if (result && result.status === "success") {
+                showSuccess(result);
+            } else if (result && result.status === "error" && result.message_ar) {
+                showError(result.message_ar);
+            } else {
+                showError(SERVER_DOWN_MSG);
+            }
+        }
+
+        async function analyzeAudio() {
+            if (fileInput.files.length === 0) return;
+            const selectedFile = fileInput.files[0];
+
+            const name = selectedFile.name || "";
+            if (name.lastIndexOf(".") <= 0 || name.lastIndexOf(".") === name.length - 1) {
+                showError("اسم الملف لازم يحتوي على امتداد (مثل voice.m4a)");
+                return;
+            }
+            const ext = name.split('.').pop().toLowerCase();
+            if (!ALLOWED_EXT.includes(ext)) {
+                showError("صيغة الملف غير مدعومة");
+                return;
+            }
+            if (selectedFile.size > MAX_SIZE) {
+                showError("حجم الملف أكبر من 25 ميجابايت");
+                return;
+            }
+
+            resultsSection.style.display = "none";
+            loadingBox.style.display = "block";
+            analyzeBtn.disabled = true;
+            analyzeBtn.textContent = "جاري التحليل...";
+
+            if (USE_MOCK) {
+                await new Promise(r => setTimeout(r, 1500));
+                const mock = MOCK_RESPONSES[mockIndex % MOCK_RESPONSES.length];
+                mockIndex++;
+                loadingBox.style.display = "none";
+                handleResult(mock);
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = "بدء التحليل الفوري";
+                return;
+            }
+
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+            try {
+                const form = new FormData();
+                form.append("file", selectedFile, name);
+
+                const res = await fetch(API_URL + "/analyze", {
+                    method: "POST",
+                    headers: { "ngrok-skip-browser-warning": "1" },
+                    body: form,
+                    signal: controller.signal
+                });
+                
+                let result = null;
+                try {
+                    result = await res.json();
+                } catch (e) {
+                    result = null;
+                }
+
+                loadingBox.style.display = "none";
+                handleResult(result);
+            } catch (err) {
+                loadingBox.style.display = "none";
+                showError(SERVER_DOWN_MSG);
+            } finally {
+                clearTimeout(timer);
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = "بدء التحليل الفوري";
+            }
+        }
+    </script>
+</body>
+</html>
