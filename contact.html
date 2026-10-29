@@ -212,7 +212,7 @@
         <p class="hero-subtitle">يسعدنا استقبال استفساراتكم وملاحظاتكم حول النظام.</p>
 
         <div class="form-container">
-            <form onsubmit="event.preventDefault(); alert('تم إرسال رسالتك بنجاح!');">
+            <form id="contactForm">
                 <div class="form-group">
                     <label>الاسم</label>
                     <input type="text" class="form-control" placeholder="أدخل اسمك الكريم" required>
@@ -234,5 +234,28 @@
         <p>جميع الحقوق محفوظة &copy; 2026 - مشروع تخرج صقر (SAQR)</p>
     </footer>
 
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const nameInput = document.querySelector('input[type="text"]');
+            const emailInput = document.querySelector('input[type="email"]');
+            const messageInput = document.querySelector('textarea');
+
+            const contactData = {
+                name: nameInput.value,
+                email: emailInput.value,
+                message: messageInput.value,
+                date: new Date().toLocaleString()
+            };
+
+            let messagesList = JSON.parse(localStorage.getItem('saqr_messages')) || [];
+            messagesList.push(contactData);
+            localStorage.setItem('saqr_messages', JSON.stringify(messagesList));
+
+            alert('تم إرسال رسالتك وحفظها بنجاح!');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
