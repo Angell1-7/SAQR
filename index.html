@@ -1,4 +1,3 @@
-
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -72,7 +71,7 @@
 
         nav ul {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             list-style: none;
         }
 
@@ -161,7 +160,6 @@
             font-size: 1.05rem;
         }
 
-        /* تنسيق تنبيه نصائح الرفع المضاف */
         .upload-tip {
             background: rgba(56, 189, 248, 0.08);
             border: 1px solid rgba(56, 189, 248, 0.2);
@@ -364,6 +362,9 @@
             <ul>
                 <li><a href="index.html" class="active">الرئيسية</a></li>
                 <li><a href="about.html">عن النظام</a></li>
+                <li><a href="awareness.html">التوعية الأمنية</a></li>
+                <li><a href="testimonials.html">آراء المستخدمين</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
                 <li><a href="team.html">فريق العمل</a></li>
             </ul>
         </nav>
@@ -440,158 +441,4 @@
         const MOCK_RESPONSES = [
             {"status":"success","verdict":"real","verdict_ar":"حقيقي","fake_probability":6.3,"audio_quality":"normal","warning":null,"duration_sec":15.4,"model_version":"saqr_v2_final"},
             {"status":"success","verdict":"suspicious","verdict_ar":"مشكوك","fake_probability":84.5,"audio_quality":"call","warning":"جودة الصوت منخفضة (نطاق ترددي ضيق مثل المكالمات)، وقد تكون دقة الكشف أقل","duration_sec":6.1,"model_version":"saqr_v2_final"},
-            {"status":"success","verdict":"fake","verdict_ar":"مزيف","fake_probability":97.2,"audio_quality":"normal","warning":null,"duration_sec":12.0,"model_version":"saqr_v2_final"},
-            {"status":"error","error_code":"no_speech","message_ar":"لم يتم العثور على كلام كافٍ في المقطع"}
-        ];
-        let mockIndex = 0;
-
-        const fileInput = document.getElementById('audioFile');
-        const fileNameDisplay = document.getElementById('fileNameDisplay');
-        const analyzeBtn = document.getElementById('analyzeBtn');
-        const resultsSection = document.getElementById('resultsSection');
-        const loadingBox = document.getElementById('loadingBox');
-        const errorBox = document.getElementById('errorBox');
-        const successContent = document.getElementById('successContent');
-        const verdictBox = document.getElementById('verdictBox');
-        const verdictLabel = document.getElementById('verdictLabel');
-        const verdictPercent = document.getElementById('verdictPercent');
-        const verdictNote = document.getElementById('verdictNote');
-        const durationValue = document.getElementById('durationValue');
-        const modelVersionValue = document.getElementById('modelVersionValue');
-        const warningBox = document.getElementById('warningBox');
-
-        const VERDICTS = {
-            real:       { text: "حقيقي",  cls: "real",       note: "" },
-            suspicious: { text: "مشكوك",  cls: "suspicious", note: "تنبيه وليس حكمًا نهائيًا، تحقّق بالاتصال على الشخص من رقمه المعروف" },
-            fake:       { text: "مزيف",   cls: "fake",       note: "" }
-        };
-
-        fileInput.addEventListener('change', function() {
-            if (fileInput.files.length > 0) {
-                fileNameDisplay.textContent = "الملف المختار: " + fileInput.files[0].name;
-                analyzeBtn.style.display = "inline-block";
-                resultsSection.style.display = "none";
-                loadingBox.style.display = "none";
-            }
-        });
-
-        function showError(message) {
-            successContent.style.display = "none";
-            errorBox.textContent = message;
-            errorBox.style.display = "block";
-            resultsSection.style.display = "block";
-        }
-
-        function showSuccess(result) {
-            const v = VERDICTS[result.verdict] || VERDICTS.suspicious;
-            const label = result.verdict_ar || v.text;
-            const percent = Number(result.fake_probability).toFixed(1);
-
-            errorBox.style.display = "none";
-            successContent.style.display = "block";
-
-            verdictBox.className = "verdict-box box-" + v.cls;
-            verdictLabel.className = "verdict-label verdict-" + v.cls;
-            verdictLabel.textContent = label + " — " + percent + "%";
-
-            verdictPercent.textContent = "نسبة احتمال التزييف";
-            verdictNote.textContent = v.note;
-            verdictNote.style.display = v.note ? "block" : "none";
-
-            durationValue.textContent = Number(result.duration_sec).toFixed(1) + " ثانية";
-            modelVersionValue.textContent = result.model_version || "";
-
-            if (result.warning) {
-                warningBox.textContent = "⚠️ " + result.warning;
-                warningBox.style.display = "block";
-            } else {
-                warningBox.style.display = "none";
-            }
-
-            resultsSection.style.display = "block";
-        }
-
-        function handleResult(result) {
-            if (result && result.status === "success") {
-                showSuccess(result);
-            } else if (result && result.status === "error" && result.message_ar) {
-                showError(result.message_ar);
-            } else {
-                showError(SERVER_DOWN_MSG);
-            }
-        }
-
-        async function analyzeAudio() {
-            if (fileInput.files.length === 0) return;
-            const selectedFile = fileInput.files[0];
-
-            const name = selectedFile.name || "";
-            if (name.lastIndexOf(".") <= 0 || name.lastIndexOf(".") === name.length - 1) {
-                showError("اسم الملف لازم يحتوي على امتداد (مثل voice.m4a)");
-                return;
-            }
-            const ext = name.split('.').pop().toLowerCase();
-            if (!ALLOWED_EXT.includes(ext)) {
-                showError("صيغة الملف غير مدعومة");
-                return;
-            }
-            if (selectedFile.size > MAX_SIZE) {
-                showError("حجم الملف أكبر من 25 ميجابايت");
-                return;
-            }
-
-      
-            resultsSection.style.display = "none";
-            loadingBox.style.display = "block";
-            analyzeBtn.disabled = true;
-            analyzeBtn.textContent = "جاري التحليل...";
-
-         
-            if (USE_MOCK) {
-                await new Promise(r => setTimeout(r, 1500));
-                const mock = MOCK_RESPONSES[mockIndex % MOCK_RESPONSES.length];
-                mockIndex++;
-                loadingBox.style.display = "none";
-                handleResult(mock);
-                analyzeBtn.disabled = false;
-                analyzeBtn.textContent = "بدء التحليل الفوري";
-                return;
-            }
-
-            const controller = new AbortController();
-            const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-
-            try {
-                const form = new FormData();
-                form.append("file", selectedFile, name);
-
-                 const res = await fetch(API_URL + "/analyze", {
-                    method: "POST",
-                    headers: { "ngrok-skip-browser-warning": "1" },
-                    body: form,
-                    signal: controller.signal
-                });
-                
-                let result = null;
-                try {
-                    result = await res.json();
-                } catch (e) {
-                    result = null;
-                }
-
-                loadingBox.style.display = "none";
-                handleResult(result);
-            } catch (err) {
-             
-                loadingBox.style.display = "none";
-                showError(SERVER_DOWN_MSG);
-            } finally {
-                clearTimeout(timer);
-                analyzeBtn.disabled = false;
-                analyzeBtn.textContent = "بدء التحليل الفوري";
-            }
-        }
-    </script>
-
-</body>
-</html>
+            {"status":"success","verdict":"fake","verdict_ar":"مزيف","fake_probability":97
