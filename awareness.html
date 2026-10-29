@@ -2,48 +2,232 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>التوعية الأمنية - مشروع صقر</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع صقر | SAQR - التوعية الأمنية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #0b1120; color: #ffffff; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; border-bottom: 1px solid #1e293b; }
-        nav a { color: #94a3b8; text-decoration: none; margin: 0 15px; transition: 0.3s; }
-        nav a:hover, nav a.active { color: #38bdf8; }
-        .container { max-width: 900px; margin: 50px auto; padding: 20px; }
-        h1 { text-align: center; color: #38bdf8; margin-bottom: 40px; }
-        .card { background-color: #111c33; border: 1px solid #1e293b; border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
-        .card h3 { color: #38bdf8; margin-top: 0; }
-        .card p { color: #cbd5e1; line-height: 1.6; }
+        :root {
+            --bg-color: #080f25;
+            --card-bg: #111b38;
+            --accent-color: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+            --success-color: #10b981;
+            --warning-color: #facc15;
+            --danger-color: #ef4444;
+            --orange-color: #fb923c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(8, 15, 37, 0.9);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-img {
+            height: 110px; 
+            width: auto;  
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--accent-color);
+        }
+
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .hero-title span {
+            color: var(--accent-color);
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        .content-container {
+            width: 100%;
+            max-width: 750px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            border-color: var(--accent-color);
+        }
+
+        .info-card h3 {
+            color: var(--accent-color);
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .info-card ul li {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 8px;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .info-card ul li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            right: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background-color: rgba(8, 15, 37, 0.5);
+            margin-top: auto;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo"><b>SAQR | صقر</b></div>
+        <div class="logo">
+            <img src="logo.png" alt="شعار صقر" class="logo-img">
+        </div>
         <nav>
-            <a href="index.html">الرئيسية</a>
-            <a href="about.html">عن النظام</a>
-            <a href="awareness.html" class="active">التوعية الأمنية</a>
-            <a href="testimonials.html">آراء المستخدمين</a>
-            <a href="contact.html">تواصل معنا</a>
-            <a href="team.html">فريق العمل</a>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">عن النظام</a></li>
+                <li><a href="awareness.html" class="active">التوعية الأمنية</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+                <li><a href="team.html">فريق العمل</a></li>
+            </ul>
         </nav>
     </header>
 
-    <div class="container">
-        <h1>دليل التوعية ضد التزييف الصوتي</h1>
-        
-        <div class="card">
-            <h3>1. ما هو التزييف العميق للأصوات (Audio Deepfake)؟</h3>
-            <p>هو تقنية تعتمد على الذكاء الاصطناعي لتوليد أو تقليد أصوات حقيقية لأشخاص بدقة عالية جداً باستخدام عينات صوتية قصيرة مسجلة لهم، مما قد يُستغل في عمليات انتحال شخصيات أو احتيال مالي.</p>
-        </div>
+    <main>
+        <h1 class="hero-title">دليل التوعية ضد <span>التزييف الصوتي</span></h1>
+        <p class="hero-subtitle">إرشادات وأساليب لحمايتك وحماية بياناتك من هجمات التزييف العميق والاحتيال الرقمي.</p>
 
-        <div class="card">
-            <h3>2. كيف تحمي نفسك من الاحتيال الصوتي؟</h3>
-            <p>• عدم الاعتماد على الصوت وحده في حال طلب تحويلات مالية أو معلومات حساسة.<br>
-               • الاتصال بالشخص عبر رقمه الرسمي الموثوق للتحقق من هويته في حال تلقي طلبات مشبوهة.<br>
-               • استخدام منصة "صقر" لفحص التسجيلات الصوتية المشكوك فيها.</p>
+        <div class="content-container">
+            <div class="info-card">
+                <h3>🛡️ ما هو التزييف العميق للأصوات؟</h3>
+                <p>تقنية تعتمد على الذكاء الاصطناعي لتقليد الأصوات البشرية بدقة عالية باستخدام عينات صوتية قصيرة، وتُستغل أحياناً في الاحتيال الهاتفي أو انتحال الشخصيات.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>💡 نصائح للوقاية والحماية</h3>
+                <ul>
+                    <li>عدم تحويل الأموال أو مشاركة رموز التحقق بناءً على مكالمة صوتية فقط.</li>
+                    <li>التأكد من هوية المتصل عبر معاودة الاتصال برقمه الرسمي المسجل لديك.</li>
+                    <li>استخدام نظام "صقر" لفحص المقاطع والمكالمات المشكوك بأصالتها فوراً.</li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - مشروع تخرج صقر (SAQR)</p>
+    </footer>
 
 </body>
 </html>
