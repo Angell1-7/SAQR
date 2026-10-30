@@ -190,4 +190,76 @@
       
         <div id="what" class="content-box active">
             <h3>🛡️ ما هو مشروع صقر؟</h3>
-            <p>نظام ذكاء اصطناعي متطور مخصص لاكتشاف الأصوات المزيفة والمولدة بتقنيات التزييف العميق (Deepfake Audio
+            <p>نظام ذكاء اصطناعي متطور مخصص لاكتشاف الأصوات المزيفة والمولدة بتقنيات التزييف العميق (Deepfake Audio)، ويهدف إلى حماية أمن الاتصالات والتحقق من موثوقية التسجيلات الصوتية بدقة عالية.</p>
+            
+            <h3 style="margin-top: 30px;">🎯 أهداف المشروع الرئيسية</h3>
+            <p>• التصدي لعمليات الاحتيال الصوتي وانتحال الشخصيات الرقمية.</p>
+            <p>• تقديم لوحة تحكم سريعة وسهلة الاستخدام للمدققين.</p>
+            <p>• دمج أحدث أبحاث الذكاء الاصطناعي في مجالات الأمن السيبراني.</p>
+        </div>
+
+       
+        <div id="how" class="content-box">
+            <h3>🔬 آلية عمل النظام</h3>
+            <p>يعتمد النظام على تحليل الموجة الصوتية مباشرة باستخدام نموذج الكلام XLS-R الذي يستخرج الخصائص الصوتية الخفية ويميز بين الأصوات البشرية الحقيقية والمولدة بالذكاء الاصطناعي</p>
+            
+            <p style="margin-top: 20px; font-weight: 600; color: var(--text-main);">📹 مقطع توضيحي لطريقة استخدام الموقع:</p>
+            <div class="video-container">
+                <video controls>
+                    <source src="tutorial.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+       
+        <div id="guidelines" class="content-box">
+            <h3>📊 معنى النتائج</h3>
+            <div class="info-card">
+                <span>لم يرصد ما يدل على أن الصوت مستنسخ</span>
+                <span class="badge-real">🟢 حقيقي</span>
+            </div>
+            <div class="info-card">
+                <span>تنبيه وليس حكماً نهائياً، تحقّق بالاتصال على الشخص من رقمه المعروف</span>
+                <span class="badge-suspicious">🟠 مشكوك</span>
+            </div>
+            <div class="info-card">
+                <span>يُرجّح أن الصوت مستنسخ: لا تحوّل أموالاً ولا تشارك أي رموز</span>
+                <span class="badge-fake">🔴 مزيف</span>
+            </div>
+            <p class="note-text">كلما ارتفعت النسبة زاد احتمال أن يكون الصوت مزيفاً</p>
+
+            <h3 style="margin-top: 35px;">💡 نصائح لنتيجة أدق</h3>
+            <div class="info-card">
+                <span>استخدم مقطعاً فيه كلام واضح لا يقِلّ عن 3 ثوانٍ</span>
+                <span class="badge-tip">🎙️</span>
+            </div>
+            <div class="info-card">
+                <span>الضجيج والموسيقى وجودة المكالمات قد تقلل دقة الكشف</span>
+                <span class="badge-tip">⚠️</span>
+            </div>
+            <div class="info-card">
+                <span>صقر أداة مساعدة، والقرار النهائي لك</span>
+                <span class="badge-tip">🛡️</span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - مشروع تخرج صقر (SAQR)</p>
+    </footer>
+
+    <script>
+        function showTab(tabId, event) {
+            const contents = document.querySelectorAll('.content-box');
+            contents.forEach(box => box.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
