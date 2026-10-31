@@ -235,27 +235,40 @@
     </footer>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-
-            const nameInput = document.querySelector('input[type="text"]');
-            const emailInput = document.querySelector('input[type="email"]');
-            const messageInput = document.querySelector('textarea');
-
-            const contactData = {
-                name: nameInput.value,
-                email: emailInput.value,
-                message: messageInput.value,
-                date: new Date().toLocaleString()
-            };
-
-            let messagesList = JSON.parse(localStorage.getItem('saqr_messages')) || [];
-            messagesList.push(contactData);
-            localStorage.setItem('saqr_messages', JSON.stringify(messagesList));
-
-            alert('تم إرسال رسالتك وحفظها بنجاح!');
-            this.reset();
-        });
+        <script>
+    const API_URL = "https://zeppelin-diaphragm-pantomime.ngrok-free.dev";
+    document.getElementById('contactForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const form = this;
+        const btn = form.querySelector('.submit-btn');
+        const data = {
+            sender_name: form.querySelector('input[type="text"]').value.trim(),
+            email: form.querySelector('input[type="email"]').value.trim(),
+            message_body: form.querySelector('textarea').value.trim()
+        };
+        btn.disabled = true;
+        btn.textContent = "جاري الإرسال...";
+        try {
+            const res = await fetch(API_URL + "/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "1" },
+                body: JSON.stringify(data)
+            });
+            const result = await res.json().catch(() => null);
+            if (res.ok && result && result.status === "success") {
+                alert(result.message_ar);
+                form.reset();
+            } else {
+                alert((result && result.message_ar) || "تعذر إرسال الرسالة، حاول لاحقًا");
+            }
+        } catch (e) {
+            alert("الخادم غير متاح حاليًا، حاول لاحقًا");
+        } finally {
+            btn.disabled = false;
+            btn.textContent = "إرسال الرسالة";
+        }
+    });
+</script>
     </script>
 </body>
 </html>
